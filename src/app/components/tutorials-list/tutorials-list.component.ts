@@ -1,7 +1,11 @@
 import { Tutorial } from './../../model/tutorial';
 import { TutorialService } from './../../services/tutorial.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { find } from 'rxjs';
+import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { TutorialDetailsComponent } from '../tutorial-details/tutorial-details.component';
 
 
 @Component({
@@ -16,10 +20,19 @@ export class TutorialsListComponent implements OnInit {
   checkedItems: number[] = [];
   checkAll: boolean = false;
   checkAllHeader: boolean = false;
+  modal: any;
 
   title?: string;
 
-  constructor(private service: TutorialService) { }
+
+  constructor(private service: TutorialService,
+    private serviceModal: NgbModal,
+    private config: NgbModalConfig) {
+      config.backdrop = true;
+      config.keyboard = false;
+      config.animation = true;
+      config.ariaLabelledBy = "modalLabel";
+     }
 
   ngOnInit(): void {
     this.service.currentTitle.subscribe(title =>
@@ -79,6 +92,11 @@ export class TutorialsListComponent implements OnInit {
 
   setTitle() {
 
+  }
+
+  open() {
+    const modalRef = this.serviceModal.open(TutorialDetailsComponent);
+    modalRef.componentInstance.name = 'World';
   }
 
 }

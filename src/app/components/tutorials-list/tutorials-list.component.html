@@ -36,9 +36,10 @@
         <th> {{ tutorial.title }} </th>
 
         <th>
+          <!-- [routerLink]="['/tutorials', tutorial.idTutorial]" -->
           <span>
             <button title="Details"
-            [routerLink]="['/tutorials',tutorial.idTutorial]"><i class="bi bi-list-columns"></i></button>
+            (click)="open()"><i class="bi bi-list-columns"></i></button>
           </span>
 
           <span class="mx-3">
@@ -53,3 +54,19 @@
     </tbody>
   </table>
 </div>
+
+<ng-template #content let-modal zindex-modal id="modalTest">
+  <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title">
+          Contratos</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      Olá
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</ng-template>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'tutorial-details',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tutorial-details.component.css']
 })
 export class TutorialDetailsComponent implements OnInit {
+  @Input() name: any;
 
-  constructor() { }
+  constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
-  }
 
+  }
 }
