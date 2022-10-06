@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="d-flex justify-content-center my-5">
+    <h1 class="font-bold fs-1">TUTORIALS</h1>
+  </div>
+
+  <div class="d-flex justify-content-center"
+  *ngIf="checkedItems.length > 0">
+    <button class="btn bg-primary text-white font-bold fs-5">
+      Delete Selection
+    </button>
+  </div>
+
+  <table class="table table-striped table-bordered hover-primary border-5 mt-2">
+    <thead class="bg-secondary bg-gradient bg-opacity-10">
+      <tr>
+        <th class="text-white font-bold fs-5 col-1" scope="col">
+          <input type="checkbox"
+          [checked]="checkAllHeader"
+          (click)="turnAllCheckboxes()">
+        </th>
+
+        <th class="text-white font-bold fs-5 col-9" scope="col">Tutorial</th>
+
+        <th class="text-white font-bold fs-5 col-2" scope="col">Options</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let tutorial of tutorials">
+        <th scope="row">
+          <input type="checkbox"
+          [checked]="checkAll"
+          (click)="checkedTutorials(tutorial.idTutorial)">
+        </th>
+
+        <th> {{ tutorial.title }} </th>
+
+        <th>
+          <span>
+            <button title="Details"
+            [routerLink]="['/tutorials',tutorial.idTutorial]"><i class="bi bi-list-columns"></i></button>
+          </span>
+
+          <span class="mx-3">
+            <button title="Edit"><i class="bi bi-pencil-square"></i></button>
+          </span>
+
+          <span>
+            <button title="Delete"><i class="bi bi-trash3"></i></button>
+          </span>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
